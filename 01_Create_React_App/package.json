@@ -1,0 +1,16 @@
+{
+  "name": "01_create_react_app",
+  "version": "1.0.0",
+  "description": "A new create App component",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{js,jsx,css,ts,tsx,html}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
