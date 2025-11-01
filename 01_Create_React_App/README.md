@@ -529,3 +529,64 @@ export default defineConfig({
 | 3. In the Vite proxy configuration, what are the two routes being configured?   | `/API and /public are being configured to proxy to localhost:3000`                                                             |
 | 4. What port does the Vite development server run on?                           | `Port 5173`                                                                                                                    |
 | 5. What port does the API server run on?                                        | `Port 3000`                                                                                                                    |
+
+## Step - 9
+
+1. Let's Add the static Assets from server to client.
+
+2. include this tag between the title and body tag
+
+```html
+<link rel="stylesheet" href="/public/style.css" />
+```
+
+3. Now change the Pizza.jsx
+
+**FILE:**`src/Pizza.jsx`
+
+```javascript
+const Pizza = (props) => {
+  return (
+    <div className="pizza">
+      <h1 style="{props.style}">{props.name}</h1>
+      <p style="{props.style}">{props.description}</p>
+      <img src="{props.image}" alt="{props.name}" />
+    </div>
+  );
+};
+export default Pizza;
+```
+
+**FILE:**`src/App.jsx`
+
+```javascript
+import Pizza from "./Pizza";
+import { createRoot } from "react-dom/client";
+
+const App = () => {
+  return (
+    <div>
+      <h1>Padro Gino's - Order Now</h1>
+      <Pizza
+        name="Peperroni"
+        description="pep, cheese , n stuff"
+        image={"/public/pizzas/pepperoni.webp"}
+      />
+      <Pizza
+        name="Cheesy"
+        description="Cheesy marshmallow, cheese , n stuff"
+        image={"/public/pizzas/hawaiian.webp"}
+      />
+      <Pizza
+        name="Chicken Loaded"
+        description="more chicken , n stuff"
+        image={"/public/pizzas/big_meat.webp"}
+      />
+    </div>
+  );
+};
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(<App />); // create an instance of the component
+```
