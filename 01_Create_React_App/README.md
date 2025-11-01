@@ -412,3 +412,72 @@ root.render(React.createElement(App)); // create an instance of the component
 | 3. What is the difference between default and named exports in JavaScript modules? | `A default export can be imported without curly braces and is typically used for a single primary export per file, while named exports require curly braces and allow multiple exports from the same file.` |
 | 4. What transformation happens when writing JSX?                                   | `JSX is transformed into React.createElement() calls during the build process, effectively creating a thin layer on top of JavaScript that allows writing HTML-like syntax in JavaScript.`                  |
 | 5. What is the recommended syntax for returning JSX in a component?                | `Use parentheses () when returning JSX to ensure proper line breaks and readability, allowing multi-line JSX without additional syntax complications.`                                                      |
+
+## Step - 7
+
+1. Let's configure the ESLint for JSX.
+
+2. Install through this command `npm install -D eslint-plugin-react`.
+
+3. Now lets configure our eslint
+   **FILE:**`eslint.config.mjs`
+
+```javascript
+import js from "@eslint/js";
+import globals from "globals";
+import prettier from "eslint-config-prettier";
+import reactPlugin from "eslint-plugin-react";
+
+/** @type {import('eslint').Linter.Config[]} */
+
+export default [
+  js.configs.recommended,
+  {
+    ...reactPlugin.configs.flat.recommended,
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+  },
+  reactPlugin.configs.flat("jsx-runtime"),
+  {
+    files: ["**/*.js", "**/*.jsx"],
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    rules: {
+      "react/no-unescapped-entities": "off",
+      "react/prop-types": "off",
+    },
+  },
+  prettier,
+];
+```
+
+4. Now change the App.js to -> `App.jsx`
+
+```javascript
+import Pizza from "./Pizza";
+import { createRoot } from "react-dom/client";
+
+const App = () => {
+  return (
+    <div>
+      <h1>Padro Gino's - Order Now</h1>
+      <Pizza name="Peperroni" description="pep, cheese , n stuff" />
+      <Pizza name="Cheesy" description="Cheesy marshmallow, cheese , n stuff" />
+      <Pizza name="Chicken Loaded" description="more chicken , n stuff" />
+    </div>
+  );
+};
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(<App />); // create an instance of the component
+```
