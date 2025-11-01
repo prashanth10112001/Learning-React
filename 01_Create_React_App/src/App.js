@@ -1,12 +1,6 @@
 import React from "react";
+import Pizza from "./Pizza";
 import { createRoot } from "react-dom/client";
-
-const Pizza = (props) => {
-  return React.createElement("div", { style: props.style }, [
-    React.createElement("h1", {}, `This is ${props.name} Chicken Macroni`),
-    React.createElement("p", {}, "With extra toppings and cheeze."),
-  ]);
-};
 
 const App = () => {
   return React.createElement(
@@ -16,11 +10,17 @@ const App = () => {
       React.createElement("h1", {}, "Pizza Mania"),
       React.createElement(Pizza, {
         name: "spicy",
+        description: "Hot and spicy",
         style: { color: "pink" },
       }),
-      React.createElement(Pizza, { name: "masala", style: { color: "grey" } }),
+      React.createElement(Pizza, {
+        name: "masala",
+        description: "Crispy and crunchy",
+        style: { color: "grey" },
+      }),
       React.createElement(Pizza, {
         name: "crispy",
+        description: "Very popular",
         style: { color: "skyblue" },
       }),
     ],

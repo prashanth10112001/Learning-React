@@ -346,3 +346,69 @@ root.render(React.createElement(App)); // create an instance of the component
 | 3. What attribute must be added to the script tag in index.html when using Vite?         | `type="module"`                                                                                               |
 | 4. What three commands are typically added to the package.json scripts section for Vite? | `dev (runs development server), build (creates production assets), preview (serves production build locally)` |
 | 5. What is the specific import path for createRoot in React 18?                          | `react-dom/client`                                                                                            |
+
+## Step - 6
+
+1. Lets use `JSX` in our files.
+
+2. Lets make a component for Pizza and move the code to there,
+   **FILE:**`src/Pizza.jsx`
+
+```javascript
+const Pizza = (props) => {
+  return (
+    <div className="pizza">
+      <h1>{props.name}</h1>
+      <p>{props.description}</p>
+    </div>
+  );
+};
+
+export default Pizza;
+```
+
+3. Now to import the Pizza component in our App.js file
+   **FILE:**`App.js`
+
+```javascript
+import React from "react";
+import Pizza from "./Pizza";
+import { createRoot } from "react-dom/client";
+
+const App = () => {
+  return React.createElement(
+    "div", // tags
+    {}, // This is for attributes id,class,style,hover
+    [
+      React.createElement("h1", {}, "Pizza Mania"),
+      React.createElement(Pizza, {
+        name: "spicy",
+        description: "Hot and spicy",
+        style: { color: "pink" },
+      }),
+      React.createElement(Pizza, {
+        name: "masala",
+        description: "Crispy and crunchy",
+        style: { color: "grey" },
+      }),
+      React.createElement(Pizza, {
+        name: "crispy",
+        description: "Very popular",
+        style: { color: "skyblue" },
+      }),
+    ],
+  );
+};
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(React.createElement(App)); // create an instance of the component
+```
+
+| Question                                                                           | Answer                                                                                                                                                                                                      |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. What is the purpose of using curly braces {} in JSX?                            | `Curly braces allow you to embed any JavaScript expression within JSX, such as calling methods on props (like props.name.toLocaleUpperCase()) or inserting dynamic values.`                                 |
+| 2. Why is className used instead of class in JSX?                                  | `The word class is a reserved keyword in JavaScript for defining classes, so React uses className to avoid syntax conflicts and align with the JavaScript DOM API's naming convention.`                     |
+| 3. What is the difference between default and named exports in JavaScript modules? | `A default export can be imported without curly braces and is typically used for a single primary export per file, while named exports require curly braces and allow multiple exports from the same file.` |
+| 4. What transformation happens when writing JSX?                                   | `JSX is transformed into React.createElement() calls during the build process, effectively creating a thin layer on top of JavaScript that allows writing HTML-like syntax in JavaScript.`                  |
+| 5. What is the recommended syntax for returning JSX in a component?                | `Use parentheses () when returning JSX to ensure proper line breaks and readability, allowing multi-line JSX without additional syntax complications.`                                                      |
