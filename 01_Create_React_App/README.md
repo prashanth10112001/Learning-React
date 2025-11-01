@@ -489,3 +489,43 @@ root.render(<App />); // create an instance of the component
 | 3. What special keyword in JSX must be replaced when working with form labels?     | `The 'for' attribute must be replaced with 'htmlFor' in JSX, which helps disambiguate it from JavaScript's reserved 'for' loop keyword.`                                                                                                                  |
 | 4. What does setting react:version to 'detect' do in ESLint configuration?         | `Setting react:version to 'detect' allows ESLint to automatically determine the React version from the package.json file, enabling version-specific linting rules.`                                                                                       |
 | 5. What two default React ESLint rules are commonly turned off?                    | `'no-unescaped-entities' and 'react/prop-types' are frequently disabled. 'No-unescaped-entities' requires manually escaping special characters, and 'react/prop-types' is considered less useful since the rise of TypeScript.`                           |
+
+## Step - 8
+
+1. Setup the API server which was in the `/D:/Learning/00_frontend_master_react/api` by running commands `npm install` and `npm run dev`.
+
+2. Then we can run the `server` in `3000` port and `client` in `5173` port.
+
+3. But here is the cool stuff , we can even use our same client port to proxy the server by adding these lines in the
+   **FILE:**`vite.config.js`
+
+```javascript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+      "/public": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
+  },
+  plugins: [react()],
+});
+```
+
+4. Now you can access the server through same port like `http://localhost:5173/api/pizzas`.
+
+| Question                                                                        | Answer                                                                                                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| 1. What technology is being used to create the API server in this project?      | `Fastify Node.js App with a SQLite database.`                                                                                  |
+| 2. What is the purpose of adding a proxy configuration in the Vite config file? | `To run the frontend and backend on the same port and avoid CORS issues by proxying API and public requests to localhost:3000` |
+| 3. In the Vite proxy configuration, what are the two routes being configured?   | `/API and /public are being configured to proxy to localhost:3000`                                                             |
+| 4. What port does the Vite development server run on?                           | `Port 5173`                                                                                                                    |
+| 5. What port does the API server run on?                                        | `Port 3000`                                                                                                                    |
