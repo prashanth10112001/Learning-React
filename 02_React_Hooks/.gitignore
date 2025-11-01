@@ -1,0 +1,112 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+# Ignore all .env files in any subfolder
+*.env
+
+# Optional: Ignore specific folders or files you don't want to push
+node_modules/
+__pycache__/
+.DS_Store
+*.log
+
+
+# Ignore all .env files
+*.env
+
+# Optionally ignore specific folders or files if needed
+client/.env
+server/.env
+python_service/.env
+prompts/.env
+
+# Node modules (if you have a JS/React project in client/)
+node_modules/
+
+# Python bytecode
+__pycache__/
+
+# Other common ignores
+.DS_Store
+*.log
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+# Ignore all .env files in any subfolder
+*.env
+
+# Ignore all node_modules directories in any subfolder
+node_modules/
+
+# Ignore all __pycache__ directories in any subfolder
+__pycache__/
+
+# Ignore all virtual environment directories (Python)
+venv/
+.env/
+
+# Ignore pylance directory (if it exists)
+_pylance/
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore IDE/editor files and directories
+.vscode/
+.idea/
+.DS_Store
+
+# Ignore other common files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
