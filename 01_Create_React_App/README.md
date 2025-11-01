@@ -218,3 +218,15 @@ export default [
 | 3. Why is the Prettier configuration always placed last in an ESLint configuration array? | `The Prettier configuration is always placed last because it only turns off formatting checks and does not add any new rules, preventing ESLint from yelling about formatting issues.`    |
 | 4. What does the --fix flag do when running ESLint?                                       | `The --fix flag automatically corrects certain linting errors that can be fixed programmatically, transforming code to meet linting standards.                                          ` |
 | 5. What is the recommended ESLint configuration for most projects?                        | `The .configs.recommended configuration provides a small subset of non-controversial ESLint rules that are purely value-adding and generally safe to use.`                                |
+
+## Step - 5
+
+1. Add a file named `.gitignore` -> which not pushes the files with extensions provided in this file.
+
+| Question                                                                           | Answer                                                                                                                                                            |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. What is the purpose of adding '.DS_Store' to a gitignore file?                  | `It's an auto-generated file by Mac OS that tracks file positioning in Mac OS Windows, and should be ignored to prevent unnecessary tracking in version control.` |
+| 2. Why should 'node_modules' be added to a gitignore file?                         | `Node_modules should be ignored because they can be reinstalled via npm install and don't need to be tracked in version control`                                  |
+| 3. What common files or directories should typically be added to a gitignore file? | `Common items include: .DS_Store, node_modules, dist, .env, coverage, and potentially .vscode directory`                                                          |
+| 4. What command is used to initialize a new Git repository?                        | `git init`                                                                                                                                                        |
+| 5. What is the purpose of a .env file in a project?                                | `A .env file typically contains environment-specific configuration and sensitive information, and should be ignored in version control for security reasons`      |
