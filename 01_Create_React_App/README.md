@@ -230,3 +230,119 @@ export default [
 | 3. What common files or directories should typically be added to a gitignore file? | `Common items include: .DS_Store, node_modules, dist, .env, coverage, and potentially .vscode directory`                                                          |
 | 4. What command is used to initialize a new Git repository?                        | `git init`                                                                                                                                                        |
 | 5. What is the purpose of a .env file in a project?                                | `A .env file typically contains environment-specific configuration and sensitive information, and should be ignored in version control for security reasons`      |
+
+## Step - 5
+
+1. Let's learn about `vite`.
+
+2. Install manually by command `npm install -D vite @vitejs/plugin-react`
+
+3. Remove these tags
+
+```html
+<!-- React development version -->
+<script
+  crossorigin
+  src="https://unpkg.com/react@18/umd/react.development.js"
+></script>
+<!-- ReactDOM development version -->
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+></script>
+```
+
+4. In the script tag add the attribute `"type"="module"`
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First React App</title>
+  </head>
+  <body>
+    <div id="root">Hi there</div>
+    <script type="module" src="./src/App.js"></script>
+  </body>
+</html>
+```
+
+5. Create a file
+   **FILE:** `vite.config.js`
+
+```javascript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+});
+```
+
+6. Install the `react` and `react-dom` through commands
+   `npm install react react-dom`
+
+7. Then use in the App.js
+   **FILE:** `App.js`
+
+```javascript
+import React from "react";
+import { createRoot } from "react-dom/client";
+
+const Pizza = (props) => {
+  return React.createElement("div", { style: props.style }, [
+    React.createElement("h1", {}, `This is ${props.name} Chicken Macroni`),
+    React.createElement("p", {}, "With extra toppings and cheeze."),
+  ]);
+};
+
+const App = () => {
+  return React.createElement(
+    "div", // tags
+    {}, // This is for attributes id,class,style,hover
+    [
+      React.createElement("h1", {}, "Pizza Mania"),
+      React.createElement(Pizza, {
+        name: "spicy",
+        style: { color: "pink" },
+      }),
+      React.createElement(Pizza, { name: "masala", style: { color: "grey" } }),
+      React.createElement(Pizza, {
+        name: "crispy",
+        style: { color: "skyblue" },
+      }),
+    ],
+  );
+};
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(React.createElement(App)); // create an instance of the component
+```
+
+8. In the package.json update these fields
+   **FILE:** `package.json`
+
+```json
+"scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{js,jsx,css,ts,tsx,html}\"",
+    "lint": "eslint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+```
+
+9. To run the app we use command `npm run dev`
+
+| Question                                                                                 | Answer                                                                                                        |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| 1. What is Vite's underlying bundler?                                                    | `Rollup, with plans to transition to Rolldown, a Rust-based bundler for JavaScript.`                          |
+| 2. What are the two minimum requirements to get started with Vite?                       | `vite@5.4.2 and @vitejs/plugin-react`                                                                         |
+| 3. What attribute must be added to the script tag in index.html when using Vite?         | `type="module"`                                                                                               |
+| 4. What three commands are typically added to the package.json scripts section for Vite? | `dev (runs development server), build (creates production assets), preview (serves production build locally)` |
+| 5. What is the specific import path for createRoot in React 18?                          | `react-dom/client`                                                                                            |

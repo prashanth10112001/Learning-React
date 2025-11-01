@@ -1,3 +1,6 @@
+import React from "react";
+import { createRoot } from "react-dom/client";
+
 const Pizza = (props) => {
   return React.createElement("div", { style: props.style }, [
     React.createElement("h1", {}, `This is ${props.name} Chicken Macroni`),
@@ -25,5 +28,5 @@ const App = () => {
 };
 
 const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
+const root = createRoot(container);
 root.render(React.createElement(App)); // create an instance of the component
