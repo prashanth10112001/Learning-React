@@ -161,3 +161,60 @@ root.render(React.createElement(App)); // create an instance of the component
 | Question             | Answer                                                                                                                                                                               |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 1. What does npm do? | `npm is the package manager for Node.js that allows installation of packages from the npm registry, manages project dependencies, and enables commands like npm run and npm install` |
+
+## Step - 4
+
+1. Now lets learn tool `eslint` -> which is helpful to find the bugs and globals and unchecked variables and etc.
+
+2. To install we use
+
+```
+npm install -D eslint prettier eslint-config-prettier eslint-plugin-prettier globals
+```
+
+3. Now to cionfigure the eslint with our files we create a file named
+   **FILE:** `eslint.config.mjs`
+
+```javascript
+import js from "@eslint/js";
+import globals from "globals";
+import prettier from "eslint-config-prettier";
+
+/** @type {import('eslint').Linter.Config[]} */
+
+export default [
+  js.configs.recommended,
+  {
+    files: ["**/*.js", "**/*.jsx"],
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+  },
+  prettier,
+];
+```
+
+4. Now to use the provided eslint we add a field in the scripts of package.json as
+
+```
+ "scripts": {
+    "format": "prettier --write \"src/**/*.{js,jsx,css,ts,tsx,html}\"",
+    "lint": "eslint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+```
+
+5. To check how it runs we use command `npm run lint`.
+
+| Question                                                                                  | Answer                                                                                                                                                                                    |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. What is the key difference between ESLint and Prettier?                                | `ESLint focuses on semantics, syntax, and code content with enforced rules, while Prettier is solely about code formatting and white space placement.`                                    |
+| 2. What is the purpose of adding browser and node globals in an ESLint configuration?     | `Adding browser and node globals allows ESLint to recognize and validate global objects like 'window' or 'document' without triggering undefined variable warnings.`                      |
+| 3. Why is the Prettier configuration always placed last in an ESLint configuration array? | `The Prettier configuration is always placed last because it only turns off formatting checks and does not add any new rules, preventing ESLint from yelling about formatting issues.`    |
+| 4. What does the --fix flag do when running ESLint?                                       | `The --fix flag automatically corrects certain linting errors that can be fixed programmatically, transforming code to meet linting standards.                                          ` |
+| 5. What is the recommended ESLint configuration for most projects?                        | `The .configs.recommended configuration provides a small subset of non-controversial ESLint rules that are purely value-adding and generally safe to use.`                                |
