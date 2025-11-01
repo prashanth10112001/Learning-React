@@ -590,3 +590,11 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(<App />); // create an instance of the component
 ```
+
+| Question                                                                                            | Answer                                                                                                                                                                                |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. What is the purpose of using the webp image file format?                                         | `WebP is a more efficient image format developed by Google that provides better compression compared to JPEG or PNG, resulting in smaller file sizes while maintaining image quality` |
+| 2. When adding an image in React, what two key attributes should be included in an <img> tag?       | `The src attribute to specify the image source path, and the alt attribute to provide alternative text for accessibility and description`                                             |
+| 3. What command needs to be run in two separate terminals to start a React development environment? | `Run the API server using npm run dev or npm start 2) Run the Vite server using npm run dev in the project directory`                                                                 |
+| 4. Where are static assets like images typically stored in a React/Vite project?                    | `In the public directory, which makes files directly accessible and available for referencing in the application`                                                                     |
+| 5. How do you add a CSS stylesheet link in an index.html file?                                      | `Use a <link> tag with rel="stylesheet" and href pointing to the stylesheet path, such as /public/style.css`                                                                          |
